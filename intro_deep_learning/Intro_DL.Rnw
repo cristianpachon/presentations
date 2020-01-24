@@ -1,0 +1,131 @@
+\documentclass[10pt,compress]{beamer}
+%\documentclass[10pt,compress,draft]{beamer}
+\mode<presentation>
+\usepackage{graphicx}
+%\usepackage{beamerthemesplit}
+\usepackage[ansinew]{inputenc}
+%\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{eqlist}
+\usepackage{amsfonts} % Simbolos matematicos
+\usepackage{amsthm} %Enunciados predefinidos y demostraciones
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage[dvips]{epsfig} %Incluir figuras .eps
+\usepackage{epsf}%Incluir figuras .eps
+\usepackage{eurosym}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\useoutertheme[footline=authortitle]{miniframes}
+\useinnertheme{circles}
+\usepackage{multirow}
+\usepackage{animate}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
+\usepackage{chicago}%,e:/latex/psfrag
+
+%%%%%%%%%%
+%    1   %
+%%%%%%%%%%
+\title[Introduction to Deep Learning   \qquad{} \insertframenumber %/54]
+%/\inserttotalframenumber]
+/\pageref{last_page}]
+{\LARGE Introduction to Deep Learning}
+\author[Cristian Pach\'on Garc\'ia]{{
+   \large Cristian Pach\'on Garc\'ia 
+  }
+\\
+%{\small January 2019}
+}
+\date{\today}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\frame{\titlepage}
+
+
+\frame{\scriptsize{\tableofcontents} }
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{}
+    \scriptsize{\tableofcontents[currentsection,currentsubsection]}
+  \end{frame}
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+   \frametitle{}
+    \scriptsize{\tableofcontents[currentsection,currentsubsection]}
+  \end{frame}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+
+\frame{\frametitle{What is Machine Learning?}
+\begin{itemize}
+\item Machine learning (ML) is the \textbf{scientific study} of 
+\textbf{algorithms} and \textbf{statistical 
+models} that computer systems use to perform a \textbf{specific task without 
+using explicit instructions}, relying on patterns \textbf{learn from data}.
+
+\item The process of making the machine learn is called 
+\textbf{the training process}. 
+
+
+\end{itemize}
+}
+
+\frame{
+
+\begin{figure}
+\centering
+%\begin{minipage}{\textwidth}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/setosa.png}
+%\end{minipage}
+\end{figure}
+
+}
+
+\frame{
+\begin{figure}
+\centering
+%\begin{minipage}{\textwidth}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/algorithm.png}
+%\end{minipage}
+\end{figure}
+
+}
+
+\frame{
+\begin{figure}
+\centering
+%\begin{minipage}{\textwidth}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/setosa_classify.png}
+%\end{minipage}
+\end{figure}
+
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Types of Machine Learning}
+ML algorithms can be classified into group of algorithms:
+\
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+  \centering \Huge
+  \emph{Thank You}
+  \label{last_page}
+\end{frame}
+
+\end{document}
