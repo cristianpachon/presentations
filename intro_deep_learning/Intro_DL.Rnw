@@ -112,20 +112,142 @@ using explicit instructions}, relying on patterns \textbf{learn from data}.
 
 }
 
+\frame{
+ML algorithms can be classified into two different groups:
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Types of Machine Learning}
-ML algorithms can be classified into group of algorithms:
-\
+\begin{itemize}
+\item Supervised learning.
+\item Unsupervised learning.
+\end{itemize}
 }
 
+
+\frame{
+Supervised learning is the machine learning task of learning a function 
+that \textbf{maps an input to an output}.
+
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/class_reg.jpeg}
+}
+
+\frame{
+Unsupervised learning is the machine learning task that allows us to discover
+patterns from the data. Rather than prediction a variable (temperature, flower 
+type, etc.) these algorithms are aimed to discover patterns in the data.
+}
+
+\frame{
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrr}
+ & Athens & Barcelona & Brussels & Calais & Cherbourg & $\dotsi$ \\ 
+  \hline
+Athens & 0 & 3313 & 2963 & 3175 & 3339 & $\dotsi$ \\ 
+  Barcelona & 3313 & 0& 1318 & 1326 & 1294 & $\dotsi$ \\ 
+  Brussels & 2963 & 1318 & 0 & 204 & 583 & $\dotsi$ \\ 
+  Calais & 3175 & 1326 & 204 & 0 & 460 & $\dotsi$ \\ 
+  Cherbourg & 3339 & 1294 & 583 & 460 & 0 & $\dotsi$ \\
+  $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ \\
+   \hline
+\end{tabular}
+\label{european_distances}
+\end{table}
+}
+
+
+\frame{
+\begin{figure}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/europ_cities.png}
+\end{figure}
+}
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Linear regression}
+\frame{\frametitle{Linear regression}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & height & weight \\ 
+  \hline
+1 & 173.37 & 69.76 \\ 
+  2 & 174.18 & 71.36 \\ 
+  3 & 173.16 & 70.85 \\ 
+  4 & 175.60 & 69.91 \\ 
+  5 & 174.33 & 67.45 \\ 
+  6 & 173.18 & 71.77 \\ 
+  7 & 174.49 & 70.46 \\ 
+  8 & 174.74 & 70.44 \\ 
+  9 & 174.58 & 69.82 \\ 
+  10 & 173.69 & 69.99 \\ 
+  $\vdots$ & \vdots & \vdots\\ 
+   \hline
+\end{tabular}
+\end{table}
+}
+
+\frame{
+Is there any relationship between \textit{height} and \textit{weight}?
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/h_w_first.png}
+}
 
 
-\begin{frame}
+\frame{
+\begin{itemize}
+\item We would like to find two coefficients ($w$ and $b$) such that 
+$weight = b + w * height$.
+
+\item In general, given two pairs of variables $x$ and $y$, we would like to 
+find two coefficients ($w$ and $b$) such that $y = b + w * x$.
+
+\item w is known as the \textit{weight} and b is known as the \textit{bias}.
+\end{itemize}
+}
+
+
+\frame{
+\begin{center}
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/h_w_second.png}
+\end{center}
+
+How can we find $w$ and $b$ such that $y = b + w * x$ is a "good approximation" 
+to the data points?
+}
+
+\frame{
+More important question than \textit{how} is: \textbf{why} do we know
+to know these parameters?
+
+\begin{itemize}
+\item If a system is modeled by an equation, it can help to predict what can
+happen under certain circumstances.
+\end{itemize}
+}
+
+\frame{
+\begin{itemize}
+\item Let's supose $b=4.057$ and $w = 0.3769$. It means 
+$$y=4.057 + 0.3769*x.$$ 
+What would be the \textit{weight} ($y$) of someone whose \text{height} ($x$) is
+174 cm? $y =  4.057 + 0.3769*174 = 69.6376$ kg.
+\end{itemize}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Deep learning}
+\subsection{Loss function}
+\frame{\frametitle{Loss function}
+
+}
+
+\frame{
   \centering \Huge
   \emph{Thank You}
   \label{last_page}
-\end{frame}
+}
 
 \end{document}
