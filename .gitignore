@@ -1,4 +1,7 @@
 meetup/
 /intro_deep_learning/data/
+intro_deep_learning/images/.DS_Store
 intro_deep_learning/images/*.DS_Store
+images/*.DS_Store
+images/.DS_Store
 .DS_Store

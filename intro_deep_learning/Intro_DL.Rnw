@@ -22,6 +22,7 @@
 \usepackage{animate}
 \usepackage{booktabs}
 \usepackage{siunitx}
+\usepackage[ruled,vlined]{algorithm2e}
 
 \usepackage{chicago}%,e:/latex/psfrag
 
@@ -125,7 +126,7 @@ ML algorithms can be classified into two different groups:
 \frame{
 Supervised learning is the machine learning task of learning a function 
 that \textbf{maps an input to an output}.
-
+\centering
 \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/class_reg.jpeg}
 }
 
@@ -183,6 +184,7 @@ Athens & 0 & 3313 & 2963 & 3175 & 3339 & $\dotsi$ \\
   9 & 174.58 & 69.82 \\ 
   10 & 173.69 & 69.99 \\ 
   $\vdots$ & \vdots & \vdots\\ 
+  200 & 173.61 & 70.213 \\
    \hline
 \end{tabular}
 \end{table}
@@ -229,7 +231,7 @@ happen under certain circumstances.
 
 \frame{
 \begin{itemize}
-\item Let's supose $b=4.057$ and $w = 0.3769$. It means 
+\item Let's suppose $b=4.057$ and $w = 0.3769$. It means 
 $$y=4.057 + 0.3769*x.$$ 
 What would be the \textit{weight} ($y$) of someone whose \text{height} ($x$) is
 174 cm? $y =  4.057 + 0.3769*174 = 69.6376$ kg.
@@ -237,12 +239,192 @@ What would be the \textit{weight} ($y$) of someone whose \text{height} ($x$) is
 }
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Deep learning}
+%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Loss function}
 \frame{\frametitle{Loss function}
+\begin{itemize}
+\item Previously, we asked the model to predict the \textit{weight} of a persona
+whose \text{height} is 174 cm. 
+\item The prediction was 69.6376 kg.
+\item \textbf{Notation:} when we use the model to predict, we use a special 
+symbol for the results: \textbf{$\hat{y}$}.
+\item So, in the previous example: $\hat{y} = 69.6376$
+\end{itemize}
+}
+
+\frame{
+How can we find $w$ and $b$ such that $y = b + w * x$ is a "good approximation" 
+to the data points?
+\begin{itemize}
+\item We need a metric that tells what is "good" and what is "bad".
+\item We want a metric that is close to 0 when the model is correct.
+\item We want a metric that increases as long as the model is not correct.
+\end{itemize}
+}
+
+\frame{
+Let's assume we have $w$ and $b$. For instance, at random we choose $w=0.2$ and
+$b=3$:
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & height(x) & weight(y) & prediction($\hat{y}$) & $error= (y-\hat{y})^2$ \\ 
+  \hline
+  1 & 173.37 & 69.76 & 37.67 & 1029.39 \\ 
+  2 & 174.18 & 71.36 & 37.84 & 1123.97 \\ 
+  3 & 173.16 & 70.85 & 37.63 & 1103.53 \\ 
+  \vdots & \vdots & \vdots & \vdots & \vdots \\ 
+  200 & 173.6189 & 70.31279 & 37.72378 & 1062.0434 \\
+   \hline
+\end{tabular}
+\end{table}
+
+$$loss = MSE = \sqrt{\frac{1}{200}(1029.39 + 1123.97  + \cdots + 1062.0434}) = 31.86411$$
+}
+
+
+\frame{
+\begin{itemize}
+\item In general, the formula for loss function (for regression problems) 
+is the following one:
+$$loss = \sqrt{\frac{1}{n}\sum_{i = 1}^n(y_i - \hat{y_i})^2} = \sqrt{\frac{1}{n}\sum_{i = 1}^n\Bigg( y_i - (b + wx_i) \Bigg) ^2}.$$
+
+
+\item Our goal is to find \textit{b} and \textit{w} such that the loss is 
+minimum.
+
+\item How??? Choosing \textit{b} and \textit{w} randomly??? We will use
+\textbf{Gradient Descent} algorithm.
+
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Gradient Descent}
+\frame{\frametitle{Gradient Descent}
+The  idea is the following one:
+\begin{itemize}
+\item Given a function that depends on two paramenters $f(b, w)$, we want 
+to find $w^*$ and $b^*$ such that $min\{f(b, w)\} = f(b^*, w^*)$.
+\item Gradient Descent (GD) allows us to find such parameter.
+\item GD works with more than two variables, i.e, let's supose
+we want to find the minimum value of a function that depends on $n$ variables
+$f(z_1, z_2, \dots, z_n)$, GD allows us to find $z_1^*, z_2^*, \dots, z_n^*$
+such that $min\{f(z_1, z2, \dots, z_n)\} = f(z_1^*, z_2^*, \dots, z_n^*)$.
+
+\end{itemize}
+}
+
+
+\frame{
+\begin{figure}
+\centering
+%\begin{minipage}{\textwidth}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/w2.png}
+%\end{minipage}
+\end{figure}
+}
+
+
+
+\frame{
+\begin{figure}
+\centering
+%\begin{minipage}{\textwidth}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/gd.png}
+%\end{minipage}
+\end{figure}
+}
+
+
+
+
+\frame{
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwResult{Find $w^*$ such that $min\{f(w)\}=f(w^*)$ }
+ $epsilon = 10^{-6}$\;
+ $w_0 =$ (random) initial point\;
+ $is\_minimum = FALSE$\;
+ $learning\_rate = 0.1$\;
+ $f_0 = f(w_0)$\;
+ \While{not $is\_minimum$}{
+  $derivative = f'(w_0)$\;
+  $w_1 = w_0 - learning\_rate \cdot derivative$\;
+  $f_1 = f(w_1)$\;
+  \If{$\mid f_1-f_0\mid < epsilon$}{
+   $is\_minimum = TRUE$\;
+   }
+   $w_0 =w_1$\;
+   $f_0 = f_1$\;
+ }
+ \Return $w_1$
+ \caption{Gradient Descent algorithm}
+\end{algorithm}
 
 }
+
+\frame{
+Given $f(w) = w^2$ and $w_0 = 1$, we want to apply  GD algorithm to obtain the
+minimum. We expect to obtain, after some iterartions,  $w^* =0$ (or close to 0).
+\begin{figure}
+\centering
+%\begin{minipage}{\textwidth}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/gd_manual.png}
+%\end{minipage}
+\end{figure}
+}
+
+
+\frame{
+Remember that:
+\begin{itemize}
+\item $f(w) = w^2$.
+\item $derivative = f'(w) = 2w$.
+\item $w_1 = w_0 - learning\_rate \cdot derivative$.
+\end{itemize}
+
+We choose as learning rate a value of 0.01.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ iteration & $w_0$ & $f(w_0)$ & derivative & $w_1$ & $f(w_1)$ & $\mid f(w_1) - f(w_0) \mid$ \\ 
+  \hline
+  2 & 1.00 & 1.00 & 2.00 & 0.80 & 0.64 & 0.36 \\ 
+  3 & 0.80 & 0.64 & 1.60 & 0.64 & 0.41 & 0.23 \\ 
+  4 & 0.64 & 0.41 & 1.28 & 0.51 & 0.26 & 0.15 \\ 
+  $\vdots$ & $\vdots$ & $\vdots$ &$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\  
+  26 & 0.00 & 0.00 & 0.01 & 0.00 & 0.00 & 0.00 \\ 
+  27 & 0.00 & 0.00 & 0.01 & 0.00 & 0.00 & 0.00 \\ 
+
+   \hline
+\end{tabular}
+\end{table}
+}
+
+\frame{
+Back to our initial problem, we want $w$ and $b$ such that minimise
+$$\sqrt{\frac{1}{n}\sum_{i = 1}^n\Bigg( weight - (b + w\cdot height) \Bigg) ^2}.$$
+
+\begin{itemize}
+\item Applying GD we obtain $b = 4.0570$ and $w = 0.3769$.
+\item Loss function is 1.00795.
+\item Any other set of parameters would provide a loss function greater than
+1.00795.
+
+\end{itemize}
+ 
+}
+
+% Gradient descent es uno de los algoritmos pero hay mas
+% Mencionar el resto de algoritmos
+
 
 \frame{
   \centering \Huge
