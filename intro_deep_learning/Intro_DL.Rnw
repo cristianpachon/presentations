@@ -241,7 +241,7 @@ What would be the \textit{weight} ($y$) of someone whose \text{height} ($x$) is
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Deep learning}
+\section{Ingredients for Deep Learning}
 %%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Loss function}
 \frame{\frametitle{Loss function}
@@ -422,10 +422,109 @@ $$\sqrt{\frac{1}{n}\sum_{i = 1}^n\Bigg( weight - (b + w\cdot height) \Bigg) ^2}.
  
 }
 
+\frame{
+\begin{itemize}
+\item GD is an algorithm that helps us find the optimal values for the 
+parameters. That is why it is called \textit{optimiser}.
+\item There are many \textit{optimisers} algorithms:
+\begin{itemize}
+\item Momentum
+\item RMSprop
+\item Adam
+\item AdaMax
+\item Adadelta
+\item ...
+\end{itemize}
+\end{itemize}
+}
+
 % Gradient descent es uno de los algoritmos pero hay mas
 % Mencionar el resto de algoritmos
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Deep Learning}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Introduction}
+\frame{\frametitle{Introduction}
+\textbf{Why} do we need \textit{another} kind of models? 
+\begin{itemize}
+\item Unfortunately real life is not linear. We need more 
+\textit{complex}/\textit{flexible} models.
+\item Neural networks (Deep Learning models) are very flexible models. They
+are able to capture very non-linear patterns and model with a high precision.
+\end{itemize}
+}
 
+
+
+\frame{\frametitle{ImageNet problem}
+\begin{itemize}
+\item The ImageNet project is a large visual database designed for use in 
+visual object recognition software research. 
+\item More than 14 million images have been hand-annotated.
+\item ImageNet contains more than 20.000 categories with a typical category, 
+such as "balloon" or "strawberry", consisting of several hundred images.
+\end{itemize}
+}
+
+\frame{
+\begin{figure}
+\centering
+%\begin{minipage}{\textwidth}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/imagenet.png}
+%\end{minipage}
+\end{figure}
+}
+
+
+\frame{
+\begin{figure}
+\centering
+%\begin{minipage}{\textwidth}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/error_imagenet.png}
+%\end{minipage}
+\end{figure}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Perceptron}
+\frame{\frametitle{Single neuron model (perceptron)}
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/perceptron.png}
+
+\begin{itemize}
+\item \textbf{Weights} and \textbf{bias} are the parameters that define the 
+behaviour. They must be estimated during training.
+\item The \textbf{output} (y) is derived from a sum of the weighted inputs plus a bias 
+term.
+\item The \textbf{activation} function \textbf{introduces non-linearities}.
+\end{itemize}
+}
+
+\frame{\frametitle{Single neuron model: Linear Regression}
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/perceptron_lr.png}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Backpropagation}
+\frame{\frametitle{Backpropagation}
+Rembember that GD formula is:
+$$w = w - learning\_rate \cdot derivative.$$
+
+We are going to use the following notation: 
+$$derivative = \frac{\partial L}{\partial w}.$$
+Our goal is to find a way to calculate the derivative in an efficient way.
+}
+
+
+
+%%Multilayer perceptrons - MLP
+%%% Deep neural network
+%% Why has DL become so famous? Imagenet problem
+
+%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{
   \centering \Huge
   \emph{Thank You}
