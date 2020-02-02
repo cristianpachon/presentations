@@ -126,6 +126,7 @@ ML algorithms can be classified into two different groups:
 \frame{
 Supervised learning is the machine learning task of learning a function 
 that \textbf{maps an input to an output}.
+
 \centering
 \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/class_reg.jpeg}
 }
@@ -308,13 +309,13 @@ minimum.
 \frame{\frametitle{Gradient Descent}
 The  idea is the following one:
 \begin{itemize}
-\item Given a function that depends on two paramenters $f(b, w)$, we want 
+\item Given a function that depends on two parameters $f(b, w)$, we want 
 to find $w^*$ and $b^*$ such that $min\{f(b, w)\} = f(b^*, w^*)$.
 \item Gradient Descent (GD) allows us to find such parameter.
-\item GD works with more than two variables, i.e, let's supose
+\item GD works with more than two variables, i.e, let's suppose
 we want to find the minimum value of a function that depends on $n$ variables
 $f(z_1, z_2, \dots, z_n)$, GD allows us to find $z_1^*, z_2^*, \dots, z_n^*$
-such that $min\{f(z_1, z2, \dots, z_n)\} = f(z_1^*, z_2^*, \dots, z_n^*)$.
+such that $min\{f(z_1, z_2, \dots, z_n)\} = f(z_1^*, z_2^*, \dots, z_n^*)$.
 
 \end{itemize}
 }
@@ -370,7 +371,7 @@ such that $min\{f(z_1, z2, \dots, z_n)\} = f(z_1^*, z_2^*, \dots, z_n^*)$.
 
 \frame{
 Given $f(w) = w^2$ and $w_0 = 1$, we want to apply  GD algorithm to obtain the
-minimum. We expect to obtain, after some iterartions,  $w^* =0$ (or close to 0).
+minimum. We expect to obtain, after some iterations,  $w^* =0$ (or close to 0).
 \begin{figure}
 \centering
 %\begin{minipage}{\textwidth}
@@ -409,7 +410,7 @@ We choose as learning rate a value of 0.01.
 }
 
 \frame{
-Back to our initial problem, we want $w$ and $b$ such that minimise
+Back to our initial problem, we want $w$ and $b$ such that minimize
 $$\sqrt{\frac{1}{n}\sum_{i = 1}^n\Bigg( weight - (b + w\cdot height) \Bigg) ^2}.$$
 
 \begin{itemize}
@@ -425,8 +426,8 @@ $$\sqrt{\frac{1}{n}\sum_{i = 1}^n\Bigg( weight - (b + w\cdot height) \Bigg) ^2}.
 \frame{
 \begin{itemize}
 \item GD is an algorithm that helps us find the optimal values for the 
-parameters. That is why it is called \textit{optimiser}.
-\item There are many \textit{optimisers} algorithms:
+parameters. That is why it is called \textit{optimizer}.
+\item There are many \textit{optimizers} algorithms:
 \begin{itemize}
 \item Momentum
 \item RMSprop
@@ -451,7 +452,8 @@ parameters. That is why it is called \textit{optimiser}.
 \item Unfortunately real life is not linear. We need more 
 \textit{complex}/\textit{flexible} models.
 \item Neural networks (Deep Learning models) are very flexible models. They
-are able to capture very non-linear patterns and model with a high precision.
+are able to capture very non-linear patterns and model them with a high 
+precision.
 \end{itemize}
 }
 
@@ -494,7 +496,7 @@ such as "balloon" or "strawberry", consisting of several hundred images.
 
 \begin{itemize}
 \item \textbf{Weights} and \textbf{bias} are the parameters that define the 
-behaviour. They must be estimated during training.
+behavior. They must be estimated during training.
 \item The \textbf{output} (y) is derived from a sum of the weighted inputs plus a bias 
 term.
 \item The \textbf{activation} function \textbf{introduces non-linearities}.
@@ -504,25 +506,186 @@ term.
 \frame{\frametitle{Single neuron model: Linear Regression}
 \centering
 \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/perceptron_lr.png}
+}
 
+\frame{\frametitle{Activation functions}
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/activation_functions.png}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Backpropagation}
-\frame{\frametitle{Backpropagation}
-Rembember that GD formula is:
-$$w = w - learning\_rate \cdot derivative.$$
+\subsection{Multi-layer Perceptron}
 
-We are going to use the following notation: 
-$$derivative = \frac{\partial L}{\partial w}.$$
-Our goal is to find a way to calculate the derivative in an efficient way.
+\frame{\frametitle{Multi-layer Perceptron}
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/mlp_1.png}
+}
+
+\frame{
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/mlp_2.png}
+}
+
+\frame{
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/mlp_3.png}
+}
+
+\frame{
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/mlp_4.png}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Backpropagation}
+
+\frame{\frametitle{Forward pass}
+We are going to use the following notation for derivatives: 
+$$\frac{\partial L}{\partial w}, \frac{\partial L}{\partial b}$$
+Remember that GD formula is:
+$$w = w - learning\_rate \cdot \frac{\partial L}{\partial w},$$
+$$b = b - learning\_rate \cdot \frac{\partial L}{\partial b}.$$
+}
+
+\frame{
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/forward.png}
 }
 
 
+\frame{\frametitle{Backpropagation: Linear case}
+\centering
+\includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/bp_b.png}
 
-%%Multilayer perceptrons - MLP
-%%% Deep neural network
-%% Why has DL become so famous? Imagenet problem
+$$\frac{\partial L}{\partial b}= \frac{\partial L}{\partial y'} \cdot \frac{\partial y'}{\partial b}.$$
+}
+
+\frame{\frametitle{Backpropagation: Linear case}
+\centering
+\includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/bp_w.png}
+
+$$\frac{\partial L}{\partial w} = \frac{\partial L}{\partial y'} \cdot \frac{\partial y'}{\partial z} \cdot \frac{\partial z}{\partial w}.$$
+}
+
+
+\subsection{How a Neural Net is trained?}
+\frame{\frametitle{How a Neural Net is trained?}
+The first step is to decide the structure of the Neural Net. To begin with,
+it should be an easy Net (just to have a first quick model).
+
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/first_net.jpg}
+}
+
+\frame{
+Given a dataset (big dataset) we split the data set into three part:
+\begin{itemize}
+\item Training part.
+\item Validation part.
+\item Test part.
+\end{itemize}
+
+\centering
+\includegraphics{./images/dataset.png}
+}
+
+\frame{
+Split the training dataset into $n$ parts (\textit{epoch}).
+\begin{itemize}
+\item For every epoch train the model using the training part.
+\item Compute the loss metric (and more metrics if you want) in this epoch.
+\item Compute the loss metric (and more metrics if you want) in the validation 
+part.
+\end{itemize}
+}
+
+\frame{
+\centering
+\includegraphics{./images/training_validation_loss.png}
+}
+
+
+\frame{
+Finally, compute the loss over the test dataset and compare it with the loss
+of the training dataset and the validation dataset.
+}
+
+\frame{
+\begin{itemize}
+\item All Deep Learning Frameworks come with an efficient implementation of the 
+previous steps (especially the training loop).
+\item The most popular ones are \textit{TensorFlow (Google)}, \textit{Keras
+("Google")} and \textit{PyTorch (Facebook)}.
+\end{itemize}
+
+\centering
+\includegraphics{./images/frameworks.png}
+}
+
+\subsection{Overfitting}
+\frame{\frametitle{Overfitting}
+If we need as much data as possible to train a model, why do have to
+train with one part of the dataset instead of the whole dataset?
+
+
+\centering
+\includegraphics{./images/dataset.png}
+}
+
+\frame{
+\centering
+\includegraphics{./images/training_validation_loss.png}
+}
+
+\frame{
+\textit{Overfitting} is a modeling error which occurs when a function is too 
+closely fit to a limited set of data points.
+
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/overfitting.png}
+}
+
+\frame{
+The way of fighting overfitting is using what is called \textit{regularization}
+techniques. It consists in adding a penalty in the loss function:
+
+$$loss = \Bigg(y - (b +  wx)\Bigg)^2,$$
+
+$$loss_{reg} = loss + \lambda(b^2 + w^2),$$
+
+where $\lambda$  is a value that we have to choose a priori. Normally
+$\lambda > 0.001$ and $\lambda<1$.
+}
+
+\frame{\frametitle{Underfitting}
+When the model is too easy that is not able to learn important patters from
+them data, it is said that the model is \textit{underfitted}.
+
+\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/underfitting.png}
+}
+
+\frame{
+How to find a "good model"?
+\begin{itemize}
+\item Start with a really simple model.
+\item Check it is underfitted.
+\item Increase the model complexity until it gets overfitted.
+\end{itemize}
+}
+
+\frame{
+\centering
+
+\includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./images/overfitting_timeline.jpeg}
+\includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./images/model_complexity.png}
+}
+
+\frame{
+\centering
+
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/nn_complexity.png}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \frame{
