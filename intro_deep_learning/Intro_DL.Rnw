@@ -410,6 +410,64 @@ We choose as learning rate a value of 0.01.
 }
 
 \frame{
+We want to find the minimum of the following function
+$$f(w) = w^4 + w^3 -3w^2 - 2w + 2.$$
+
+Its derivative function is:
+$$f'(w) = 4w^3 + 3w^2 - 6w - 2.$$
+
+We cannot solve manually the following equation:
+
+$$4w^3 + 3w^2 - 6w - 2$$
+
+GD can help us to find the minimum value.
+
+}
+
+\frame{
+Remember that:
+\begin{itemize}
+\item $f(w) = w^4 + w^3 -3w^2 - 2w + 2$.
+\item $derivative = f'(w) = 4w^3 + 3w^2 - 6w - 2$.
+\item $w_1 = w_0 - learning\_rate \cdot derivative$.
+\end{itemize}
+
+We choose as learning rate a value of 0.001.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ iteration & $w_0$ & $f(w_0)$ & derivative & $w_1$ & $f(w_1)$ & $\mid f(w_1) - f(w_0) \mid$ \\ 
+  \hline
+  1 & 2 & 10 & 30 & 1.97 & 9.124 & 0.87 \\ 
+  2 & 1.97 & 9.12 & 28.40 & 1.94 & 8.33 & 0.78 \\ 
+  3 & 1.94 & 8.33 & 26.93 & 1.91 & 7.63 & 0.70 \\ 
+  4 & 1.91 & 7.63 & 25.58 & 1.88 & 6.99 & 0.63 \\ 
+  5 & 1.88 & 6.99 & 24.33 & 1.86 & 6.41 & 0.57 \\ 
+  6 & 1.86 & 6.41 & 23.17 & 1.84 & 5.88 & 0.52 \\ 
+  7 & 1.84 & 5.88 & 22.10 & 1.81 & 5.41 & 0.47 \\ 
+  8 & 1.81 & 5.41 & 21.10 & 1.79 & 4.97 & 0.43 \\ 
+  $\vdots$ & $\vdots$ & $\vdots$ &$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\  
+  367 & 1.07 & -1.03 & 0.03 & 1.07& -1.03 & 0 \\ 
+  368 & 1.078 & -1.03 & 0.03 & 1.07 & -1.03 & 0 \\ 
+  
+     \hline
+\end{tabular}
+\end{table}
+
+}
+
+\frame{
+\begin{figure}
+\centering
+%\begin{minipage}{\textwidth}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/poli.png}
+%\end{minipage}
+\end{figure}
+}
+
+\frame{
 Back to our initial problem, we want $w$ and $b$ such that minimize
 $$\sqrt{\frac{1}{n}\sum_{i = 1}^n\Bigg( weight - (b + w\cdot height) \Bigg) ^2}.$$
 
@@ -573,7 +631,7 @@ The first step is to decide the structure of the Neural Net. To begin with,
 it should be an easy Net (just to have a first quick model).
 
 \centering
-\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/first_net.jpg}
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/simple_net.png}
 }
 
 \frame{
