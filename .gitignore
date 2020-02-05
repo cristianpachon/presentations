@@ -5,3 +5,5 @@ intro_deep_learning/images/*.DS_Store
 images/*.DS_Store
 images/.DS_Store
 .DS_Store
+.RData
+.Rhistory

@@ -624,7 +624,6 @@ $$\frac{\partial L}{\partial b}= \frac{\partial L}{\partial y'} \cdot \frac{\par
 $$\frac{\partial L}{\partial w} = \frac{\partial L}{\partial y'} \cdot \frac{\partial y'}{\partial z} \cdot \frac{\partial z}{\partial w}.$$
 }
 
-
 \subsection{How a Neural Net is trained?}
 \frame{\frametitle{How a Neural Net is trained?}
 The first step is to decide the structure of the Neural Net. To begin with,
@@ -633,6 +632,7 @@ it should be an easy Net (just to have a first quick model).
 \centering
 \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/simple_net.png}
 }
+
 
 \frame{
 Given a dataset (big dataset) we split the data set into three part:
